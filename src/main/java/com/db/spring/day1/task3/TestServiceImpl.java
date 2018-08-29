@@ -1,4 +1,4 @@
-package com.db.spring.task3;
+package com.db.spring.day1.task3;
 
 public class TestServiceImpl implements TestService {
     private void init(){

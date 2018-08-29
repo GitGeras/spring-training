@@ -1,4 +1,4 @@
-package com.db.spring.task3;
+package com.db.spring.day1.task3;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.BeansException;
@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
-public class TransactionAnnotationBeanPostProcessor implements BeanPostProcessor {
+public class BenchmarkAnnotationBeanPostProcessor implements BeanPostProcessor {
 
     @Autowired
     private ConfigurableListableBeanFactory beanFactory;
@@ -20,14 +20,13 @@ public class TransactionAnnotationBeanPostProcessor implements BeanPostProcessor
     @Override
     @SneakyThrows
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-
         Class<?> type = beanFactory.getType(beanName);
         /*String originalName = bean.getClass().getName().split("\\$\\$")[0];
         Class<?> type = Class.forName(originalName);*/
 
-        boolean methodNeedsTransaction = Arrays.stream(type.getDeclaredMethods()).anyMatch(method -> method.isAnnotationPresent(Transaction.class));
+        boolean methodNeedsBenchmark = Arrays.stream(type.getDeclaredMethods()).anyMatch(method -> method.isAnnotationPresent(Benchmark.class));
 
-        if (type.isAnnotationPresent(Transaction.class) || methodNeedsTransaction) {
+        if (type.isAnnotationPresent(Benchmark.class) || methodNeedsBenchmark) {
             if (type.getInterfaces().length == 0) {
                 return Enhancer.create(type, (org.springframework.cglib.proxy.InvocationHandler) (o, method, args) -> invoke(bean, type, method, args));
             } else {
@@ -40,14 +39,14 @@ public class TransactionAnnotationBeanPostProcessor implements BeanPostProcessor
 
     private Object invoke(Object t, Class type, Method method, Object[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method classMethod = type.getMethod(method.getName(), method.getParameterTypes());
-        if (classMethod.isAnnotationPresent(Transaction.class)
-                || type.isAnnotationPresent(Transaction.class)) {
-            System.out.println("********** transaction for method " + method.getName() + " was started ***********");
+        if (classMethod.isAnnotationPresent(Benchmark.class)
+                || type.isAnnotationPresent(Benchmark.class)) {
+            System.out.println("********** benchmark for method " + method.getName() + " was started ***********");
             long start = System.nanoTime();
             Object retVal = method.invoke(t, args);
             long end = System.nanoTime();
             System.out.println(end - start);
-            System.out.println("********** transaction for method " + method.getName() + " was ended ***********");
+            System.out.println("********** benchmark for method " + method.getName() + " was ended ***********");
             return retVal;
         } else {
             return method.invoke(t, args);

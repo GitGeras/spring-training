@@ -1,8 +1,11 @@
-package com.db.spring.task3;
+package com.db.spring.day1.task1;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Transaction {
+public @interface InjectRandomInt {
+    int min();
+
+    int max();
 }

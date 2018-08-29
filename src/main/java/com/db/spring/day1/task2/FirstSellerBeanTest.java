@@ -1,8 +1,8 @@
-package com.db.spring.task2;
+package com.db.spring.day1.task2;
 
 import javax.annotation.PostConstruct;
 
-public class SecondSellerBeanTest {
+public class FirstSellerBeanTest {
     @InjectSeller
     private Seller seller;
 

@@ -1,11 +1,13 @@
-package com.db.spring.task1;
+package com.db.spring.day1.task1;
 
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class TalkingRobotImpl implements TalkingRobot {
-    @Setter
+    @Autowired
     List<Quoter> quoters;
 
     @Override

@@ -1,4 +1,4 @@
-package com.db.spring.task2;
+package com.db.spring.day1.task2;
 
 import lombok.Getter;
 

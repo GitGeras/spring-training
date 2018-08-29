@@ -1,4 +1,4 @@
-package com.db.spring.task2;
+package com.db.spring.day1.task2;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class InjectSellerAnnotationBeanPostProcessor implements BeanPostProcessor {
 

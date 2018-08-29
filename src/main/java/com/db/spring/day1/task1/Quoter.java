@@ -1,4 +1,4 @@
-package com.db.spring.task1;
+package com.db.spring.day1.task1;
 
 public interface Quoter {
     void sayQuote();
