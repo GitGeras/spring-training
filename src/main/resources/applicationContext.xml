@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
+    <bean class="com.db.spring.task1.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <bean class="com.db.spring.task2.InjectSellerAnnotationBeanPostProcessor"/>
+    <bean class="com.db.spring.task3.BenchmarkAnnotationBeanPostProcessor"/>
+    <bean class="com.db.spring.task3.TransactionAnnotationBeanPostProcessor"/>
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <bean id="testService" class="com.db.spring.task3.TestServiceImpl"/>
+
+<!-- second task
+    <bean id="firstSellerBeanTest" class="com.db.spring.task3.TestServiceImplImpl.db.spring.task3.TestServiceImpl.db.spring.task2.FirstSellerBeanTest" init-method="init"/>
+    <bean id="secondSellerBeanTest" class="com.db.spring.task2.SecondSellerBeanTest" init-method="init"/>-->
+
+
+
+    <!--<bean id="shakespeareQuoter" class="com.db.spring.task1.ShakespeareQuoter">
+        <property name="message" value="2 B || ! 2 B"/>
+    </bean>
+    <bean id="string" class="java.lang.String">
+        <constructor-arg value="trust me"/>
+    </bean>
+    <bean id="terminatorQuoter" class="com.db.spring.task1.TerminatorQuoter">
+        <property name="messages">
+            <list>
+                <value>I'll be back</value>
+                <value>Astalavista, baby</value>
+                <ref bean="string"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="talkingRobot" class="com.db.spring.task1.TalkingRobotImpl" init-method="talk">
+        <property name="quoters">
+            <list>
+                <ref bean="terminatorQuoter"/>
+                <ref bean="shakespeareQuoter"/>
+            </list>
+        </property>
+    </bean>-->
+</beans>
