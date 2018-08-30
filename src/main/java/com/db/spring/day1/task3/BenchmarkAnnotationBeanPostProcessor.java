@@ -21,8 +21,6 @@ public class BenchmarkAnnotationBeanPostProcessor implements BeanPostProcessor {
     @SneakyThrows
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Class<?> type = beanFactory.getType(beanName);
-        /*String originalName = bean.getClass().getName().split("\\$\\$")[0];
-        Class<?> type = Class.forName(originalName);*/
 
         boolean methodNeedsBenchmark = Arrays.stream(type.getDeclaredMethods()).anyMatch(method -> method.isAnnotationPresent(Benchmark.class));
 
