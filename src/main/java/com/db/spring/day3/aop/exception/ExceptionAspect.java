@@ -29,16 +29,15 @@ public class ExceptionAspect {
 
     @AfterThrowing(pointcut = "dataBaseRuntimeExceptionPointcut()", throwing = "ex")
     public void mailException(JoinPoint jp, DataBaseRuntimeException ex){
-        if (exceptions.add(ex)){
+        if (!exceptions.contains(ex)){
+            exceptions = new HashSet<>();
+            exceptions.add(ex);
+
             for (String email : emails) {
                 System.out.println("Sending email for: " + email + "");
             }
             System.out.println(Arrays.toString(ex.getStackTrace()));
         }
 
-        if (exceptions.size() > 10)
-        {
-            exceptions = new HashSet<>();
-        }
     }
 }
