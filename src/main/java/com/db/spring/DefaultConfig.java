@@ -1,5 +1,8 @@
 package com.db.spring;
 
+import com.db.spring.day3.custom_scope.TwoSecondsBean;
+import com.db.spring.day3.custom_scope.TwoSecondsBeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.annotation.*;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
@@ -17,5 +20,22 @@ public class DefaultConfig {
     @Bean
     public ConversionService conversionService() {
         return new DefaultConversionService();
+    }
+
+    @Bean
+    public static BeanFactoryPostProcessor beanFactoryPostProcessor() {
+        return new TwoSecondsBeanFactoryPostProcessor();
+    }
+
+    @Scope(scopeName = "twoSeconds", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Bean
+    public TwoSecondsBean foo() {
+        return new TwoSecondsBean("foo");
+    }
+
+    @Scope(scopeName = "twoSeconds")
+    @Bean
+    public TwoSecondsBean bar() {
+        return new TwoSecondsBean("bar");
     }
 }
