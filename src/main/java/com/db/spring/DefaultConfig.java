@@ -6,6 +6,7 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.annotation.*;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @PropertySource("classpath:props.properties")
@@ -15,6 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
         @ComponentScan(basePackages = "com.db.spring.day3")})
 @EnableAspectJAutoProxy
 @EnableScheduling
+@EnableRetry
 public class DefaultConfig {
 
     @Bean
