@@ -24,11 +24,6 @@ public class DefaultConfig {
         return new DefaultConversionService();
     }
 
-    @Bean
-    public static BeanFactoryPostProcessor beanFactoryPostProcessor() {
-        return new TwoSecondsBeanFactoryPostProcessor();
-    }
-
     @Scope(scopeName = "twoSeconds", proxyMode = ScopedProxyMode.TARGET_CLASS)
     @Bean
     public TwoSecondsBean foo() {

@@ -1,14 +1,14 @@
 package com.db.spring.day3.aop.exception;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LessGeneralService {
-    @Autowired
-    private AlmostDaoService daoService;
+@RequiredArgsConstructor
+class LessGeneralService {
+    private final AlmostDaoService daoService;
 
-    public void doSomeLogic() {
+    void doSomeLogic() {
         daoService.doSomeLogic();
     }
 }

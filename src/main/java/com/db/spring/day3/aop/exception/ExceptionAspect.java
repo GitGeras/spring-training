@@ -26,9 +26,8 @@ public class ExceptionAspect {
     }
 
     @AfterThrowing(pointcut = "dataBaseRuntimeExceptionPointcut()", throwing = "ex")
-    public void mailException(JoinPoint jp, DataBaseRuntimeException ex) {
+    public void mailException(DataBaseRuntimeException ex) {
         if (!exceptions.containsKey(ex)) {
-            exceptions = Collections.synchronizedMap(new WeakHashMap<>());
             exceptions.put(ex, 1);
 
             for (String email : emails) {
